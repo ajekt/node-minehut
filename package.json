@@ -1,6 +1,6 @@
 {
   "name": "node-minehut",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Node package for the Minehut API. (https://github.com/ajekt/node-minehut)",
   "main": "./src/index.js",
   "scripts": {
