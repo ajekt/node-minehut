@@ -25,6 +25,50 @@ If you are interested in contributing (e.g. Adding a new function, improving cod
 3. *useSnakeCase*
 
 # Documentation
+
+*Links may not work on NPM page.*
+- [User Functions](#user-functions)
+	- [getSession()](#getsession)
+	- [getUser()][#getuseruser-id]
+	- [setServer()][#setserverserver-id]
+
+- [Server Functions](#server-functions)
+	- [getInfo()](#getinfoserver-id)
+	- [Server Management](#server-management)
+		- [getStatus()](#getstatusserver-id)
+		- [startService()](#startservice)
+		- [start()](#start)
+		- [destroyService()](#destroyservice)
+		- [shutdown()](#shutdown)
+		- [resetServerFiles()](#resetserverfiles)
+		- [repairServerFiles()](#repairserverfiles)
+	- [Server Settings](#server-settings)
+		- [changeMOTD()](#changemotdmotd)
+		- [changeName()](#changenamename)
+		- [changeVisbility()](#changevisibilitytruefalse)
+		- [changeProperty()](#changeproperty-field-value-)
+	- [Server Files](#server-files)
+		- [getFiles()](#getfilespath)
+		- [getFileContent()](#getfilecontentpath)
+		- [editFile()](#editfilepath-content)
+		- [deleteFile()](#deletefilepath)
+		- [createDir()](#createdirpath)
+		- [deleteDir()](#deletedirpath)
+	- [Plugins](#plugins)
+		- [getPlugins()](#getplugins)
+		- [getAllPlugins()](#getallplugins)
+		- [installPlugin()](#installpluginplugin-id)
+		- [removePlugin()](#removeplugin)
+		-	[resetPlugin()](#resetplugin)
+	- [World](#world)
+		- [saveWorld()](#saveworld)
+		- [resetWorld()](#resetworld)
+		- [uploadWorld()](#uploadworld)
+	- [Network](#network)
+		- [getNetworkStats()](#getnetworkstats)
+		- [getHomepageStats()](#gethomepagestats)
+		- [getTopServers()](#gettopservers)
+
 ## User Functions
 #### getSession()
 *getSession()* retrieves user session data (token, session ID) from the user's email & password. Example:
@@ -126,7 +170,7 @@ Changes a server's properties, for a list of valid properties/fields check the A
 Minehut.changeProperty({ pvp: true }); // Enable server PVP
 ```
 
-### Files
+### Server Files
 
 #### getFiles(*path*)
 Lists server's files in *path* (default root), returns an array of `{ name: "cool Folder", directory: true, blocked: false }`, does not loop through sub directories. Example:
