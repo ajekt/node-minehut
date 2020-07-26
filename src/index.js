@@ -49,11 +49,11 @@ class Minehut {
 
 
   // Server
-  getStatus() {
-    return fetch(`${API}/server/${this.server}/status`, { headers: this.authHeader })
+  getStatus(server=this.server) {
+    return fetch(`${API}/server/${server}/status`, { headers: this.authHeader })
     .then(res => res.json())
     .then(json => {
-      return json;
+      return json['status'];
     })
     .catch(err => {
       throw err;
@@ -209,7 +209,7 @@ class Minehut {
     return fetch(`${API}/file/${this.server}/read/${path}`, { headers: this.authHeader })
     .then(res => res.json())
     .then(json => {
-      return json;
+      return json['content'];
     })
     .catch(err => {
       throw err;
@@ -242,12 +242,15 @@ class Minehut {
     });
   }
 
-  deleteFolder(name, path='') {
+  deleteDir(path) {
     this.authHeader['Content-Type'] = 'application/json';
 
+    let dirName = path.substring(path.lastIndexOf('/') + 1),
+        dirPath = path.substring(0, path.lastIndexOf('/') + 1);
+
     let body = JSON.stringify({
-      name: name,
-      directory: path
+      name: dirName,
+      directory: dirPath
     });
 
     return fetch(`${API}/file/${this.server}/folder/delete`, { method: "POST", headers: this.authHeader, body: body })
@@ -264,7 +267,6 @@ class Minehut {
 
     let dirName = path.substring(path.lastIndexOf('/') + 1),
         dirPath = path.substring(0, path.lastIndexOf('/') + 1);
-
 
     let body = JSON.stringify({
       name: dirName,
@@ -430,7 +432,7 @@ class Minehut {
     return fetch(`${API}/network/top_servers`)
     .then(res => res.json())
     .then(json => {
-      return json;
+      return json['servers'];
     })
     .catch(err => {
       throw err;
