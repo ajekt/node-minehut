@@ -6,16 +6,24 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ajekt",
-  "license": "ISC",
-  "dependencies": {
-    "form-data": "^3.0.0",
-    "node-fetch": "^2.6.0"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ajekt/node-minehut.git"
   },
   "keywords": [
     "minehut",
     "mh",
     "node",
     "javascript"
-  ]
+  ],
+  "author": "ajekt",
+  "license": "ISC",
+  "dependencies": {
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/ajekt/node-minehut/issues"
+  },
+  "homepage": "https://github.com/ajekt/node-minehut#readme"
 }
