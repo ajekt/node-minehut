@@ -29,8 +29,8 @@ If you are interested in contributing (e.g. Adding a new function, improving cod
 *Links may not work on NPM page.*
 - [User Functions](#user-functions)
 	- [getSession()](#getsession)
-	- [getUser()][#getuseruser-id]
-	- [setServer()][#setserverserver-id]
+	- [getUser()](#getuseruser-id)
+	- [setServer()](#setserverserver-id)
 
 - [Server Functions](#server-functions)
 	- [getInfo()](#getinfoserver-id)
