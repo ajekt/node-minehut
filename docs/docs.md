@@ -68,7 +68,7 @@ example();
 		- [getNetworkStats()](#getnetworkstats)
 		- [getHomepageStats()](#gethomepagestats)
 		- [getTopServers()](#gettopservers)
-    - [getAllServers()](#getallservers)
+      - [getAllServers()](#getallservers)
 
 ## User Functions
 #### getSession()
