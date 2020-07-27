@@ -40,7 +40,7 @@ example();
 		- [start()](#start)
 		- [destroyService()](#destroyservice)
 		- [shutdown()](#shutdown)
-    - [createServer()](#createservername-platform)
+      - [createServer()](#createservername-platform)
 		- [resetServerFiles()](#resetserverfiles)
 		- [repairServerFiles()](#repairserverfiles)
 	- [Server Settings](#server-settings)
