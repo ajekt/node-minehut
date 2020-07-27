@@ -26,13 +26,12 @@ example();
 
 ## Links
 - [User Functions](#user-functions)
-	- [getSession()](#getsession)
+  - [getSession()](#getsession)
   - [getSessionGhost()](#getsessionghost)
   - [signUp()](#signup)
   - [signUpVerify()](#signUpVerify)
-	- [getUser()](#getuseruser-id)
-	- [setServer()](#setserverserver-id)
-
+  - [getUser()](#getuseruser-id)
+  - [setServer()](#setserverserver-id)
 - [Server Functions](#server-functions)
 	- [getInfo()](#getinfoserver-id--byname)
 	- [Server Management](#server-management)
