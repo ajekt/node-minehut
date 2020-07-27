@@ -40,6 +40,7 @@ example();
 		- [start()](#start)
 		- [destroyService()](#destroyservice)
 		- [shutdown()](#shutdown)
+    - [createServer()](#createservername-platform)
 		- [resetServerFiles()](#resetserverfiles)
 		- [repairServerFiles()](#repairserverfiles)
 	- [Server Settings](#server-settings)
@@ -159,7 +160,6 @@ Creates a new server. Example:
 // platform defaults to java
 Minehut.createServer('verycoolserver');
 ```
-
 
 #### resetServerFiles()
 Completely resets a server's files but not settings. Example:
