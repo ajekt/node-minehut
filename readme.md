@@ -23,3 +23,5 @@ If you are interested in contributing (e.g. Adding a new function, improving cod
 1. If you have made a new feature add documentation!
 2. Any function that returns information to the user should start with get (e.g. *getTopServers()* returns the top servers but *deleteFile()* does not return anything).
 3. *useSnakeCase*
+
+# [Docs](https://github.com/ajekt/node-minehut/blob/master/docs/docs.md)
