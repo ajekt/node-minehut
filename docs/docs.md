@@ -25,14 +25,16 @@ example();
 ```
 
 ## Links
-*Links may not work on NPM page.*
 - [User Functions](#user-functions)
 	- [getSession()](#getsession)
+  - [getSessionGhost()](#getsessionghost)
+  - [signUp()](#signup)
+  - [signUpVerify()](#signUpVerify)
 	- [getUser()](#getuseruser-id)
 	- [setServer()](#setserverserver-id)
 
 - [Server Functions](#server-functions)
-	- [getInfo()](#getinfoserver-id)
+	- [getInfo()](#getinfoserver-id--byname)
 	- [Server Management](#server-management)
 		- [getStatus()](#getstatusserver-id)
 		- [startService()](#startservice)
@@ -67,6 +69,7 @@ example();
 		- [getNetworkStats()](#getnetworkstats)
 		- [getHomepageStats()](#gethomepagestats)
 		- [getTopServers()](#gettopservers)
+    - [getAllServers()](#getallservers)
 
 ## User Functions
 #### getSession()
@@ -75,6 +78,26 @@ example();
 Minehut.getSession('example@example.com', 'p4ssw0rd');
 ```
 *getSession()* returns the response from the Minehut API and also stores it in `this.session` so you don't have to pass the token and session with every function.
+
+#### getSessionGhost()
+Returns the same as *getSession()* but instead of using email and password it uses a token and session ID.
+```javascript
+Minehut.getSessionGhost('blahTokenblah', 'blahSessionIDblah');
+```
+Both values default to the values stored in `this.session` if there are any.
+
+#### signUp()
+Signs up for Minehut account. Also sends a verification email to *email*. Example:
+```javascript
+Minehut.signUp('coolemail@outlook.com', '2000-02-02'); // Requires email and birthday
+```
+If *signUp()* returns a `400 Bad request` error it's most likely because the email domain is not recognised.
+
+#### signUpVerify()
+Verifies a Minehut account. Example:
+```javascript
+Minehut.signUpVerify('Verification Code', 'p4ssw0rd');
+```
 
 #### getUser(*User ID*)
 *getUser()* returns user data (credits, servers, email). The default *User ID* is the user's own ID (Stored in `this.session`). Example:
@@ -94,10 +117,12 @@ Minehut.setServer(session.servers[0]);
 
 __**All functions require setServer()**__
 
-#### getInfo(*Server ID*)
+#### getServer(*Server ID*, *byName*)
 Returns server information (name, plugins, properties). Example:
 ```javascript
-let serverInfo = await Minehut.getInfo();
+let serverInfo = await Minehut.getInfo('Warzone', true); // Gets server by name
+// Gets server by ID
+let serverInfo = await Minehut.getInfo('5f06b215a013810065829273');
 ```
 
 ### Server Management
@@ -129,10 +154,17 @@ Stops server but does not end process, can be started again using *start()*.
 ```javascript
 Minehut.shutdown();
 ```
+#### createServer(name, *platform*)
+Creates a new server. Example:
+```javascript
+// platform defaults to java
+Minehut.createServer('verycoolserver');
+```
+
 
 #### resetServerFiles()
 Completely resets a server's files but not settings. Example:
-```
+```javascript
 console.log('Resetting server!');
 Minehut.resetServerFiles();
 ```
@@ -289,4 +321,11 @@ Returns a list of the top 5 Minehut servers. Example:
 ```javascript
 let topServers = await Minehut.getTopServers();
 console.log('Most popular server: ' + topServers[0]['name']);
+```
+
+#### getAllServers()
+Returns a list of every active Minehut server.
+```javascript
+let minehutServers = Minehut.getAllServers();
+console.log(minehutServers[0]);
 ```

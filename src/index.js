@@ -32,6 +32,22 @@ class Minehut {
       });
   }
 
+  getSessionGhost() {
+    return fetch(`${API}/users/ghost_login`, { method: "POST", headers: this.authHeader })
+    .then(res => res.json())
+    .then(json => {
+      this.session = json;
+      this.authHeader = {
+        Authorization: this.session.token,
+        'X-Session-ID': this.session.sessionId
+      };
+      return json;
+    })
+    .catch(err => {
+      throw err;
+    });
+  }
+
   getUser(user=this.session._id) {
     return fetch(`${API}/user/${user}`, { headers: this.authHeader })
       .then(res => res.json())
@@ -47,6 +63,33 @@ class Minehut {
     this.server = server;
   }
 
+  signUp(email, birthday) {
+    let body = JSON.stringify({
+      email: email,
+      birthday: birthday
+    });
+
+    return fetch(`${API}/users/signup`, { method: "POST", headers: {"Content-Type":"application/json"}, body: body })
+    .then(res => { return res; })
+    .catch(err => {
+      throw err;
+    });
+  }
+
+  signUpVerify(emailCode, password) {
+    let body = JSON.stringify({
+      email_code: emailCode,
+      password: password
+    });
+
+    return fetch(`${API}/users/confirm_email`, { method: "POST", headers: {"Content-Type":"application/json"}, body: body })
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      throw err;
+    });
+  }
 
   // Server
   getStatus(server=this.server) {
@@ -116,11 +159,30 @@ class Minehut {
     });
   }
 
-  getInfo(server=this.server) {
-    return fetch(`${API}/server/${server}`, { headers: this.authHeader })
+  getServer(server=this.server, byName='') {
+    if (byName === true) byName = '?byName=true';
+
+    return fetch(`${API}/server/${server}${byName}`, { headers: this.authHeader })
     .then(res => res.json())
     .then(json => {
-      return json['server'];
+      return json;
+    })
+    .catch(err => {
+      throw err;
+    });
+  }
+
+  createServer(name, platform='java') {
+    this.authHeader['Content-Type'] = 'application/json';
+
+    let body = JSON.stringify({
+      name: name,
+      platform: platform
+    });
+
+    return fetch(`${API}/servers/create`, { method: "POST", headers: this.authHeader, body: body })
+    .then(res => {
+      return res;
     })
     .catch(err => {
       throw err;
@@ -430,6 +492,17 @@ class Minehut {
 
   getTopServers() {
     return fetch(`${API}/network/top_servers`)
+    .then(res => res.json())
+    .then(json => {
+      return json['servers'];
+    })
+    .catch(err => {
+      throw err;
+    });
+  }
+
+  getAllServers() {
+    return fetch(`${API}/servers`)
     .then(res => res.json())
     .then(json => {
       return json['servers'];
